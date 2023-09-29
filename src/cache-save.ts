@@ -5,6 +5,8 @@ import * as cache from '@actions/cache';
 import {State} from './cache-state';
 
 export async function cacheMATLAB(useCache: string) {
+    core.info(`useCache: ${useCache}`);
+
     if (useCache.toLowerCase() !== "true") {
         return;
     }

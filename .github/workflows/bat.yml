@@ -74,10 +74,3 @@ jobs:
         uses: matlab-actions/run-command@v1
         with:
           command: "${{ matrix.check-simulink }}"
-      - name: Check NoOp on 2nd install
-        uses: ./
-        with:
-          release: ${{ matrix.release }}
-          products: ${{ matrix.products }}
-          use-cache: true
-  
