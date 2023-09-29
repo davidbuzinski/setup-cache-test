@@ -6,7 +6,6 @@ import { restoreMATLAB } from "./cache-restore";
 
 jest.mock("@actions/cache");
 jest.mock("@actions/core");
-jest.mock("@actions/tool-cache");
 
 afterEach(() => {
     jest.resetAllMocks();

@@ -5,10 +5,9 @@ import { cacheMATLAB } from "./cache-save";
 
 export async function run() {
     const useCache = core.getInput('use-cache');
-    core.info(useCache);
     await cacheMATLAB(useCache);
 }
 
 run().catch((e) => {
-    core.setFailed(e);
+    core.error(e);
 });

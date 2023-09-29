@@ -5,8 +5,6 @@ import * as cache from '@actions/cache';
 import {State} from './cache-state';
 
 export async function cacheMATLAB(useCache: string) {
-    core.info(`useCache: ${useCache}`);
-
     if (useCache.toLowerCase() !== "true") {
         return;
     }
@@ -16,10 +14,6 @@ export async function cacheMATLAB(useCache: string) {
     const matlabPath: string[] = JSON.parse(
         core.getState(State.MatlabCachePath) || '[]'
     );
-
-    core.info(`matchedKey: ${matchedKey}`);
-    core.info(`primaryKey: ${primaryKey}`);
-    core.info(`matlabPath: ${matlabPath.join('|')}`);
 
     if (primaryKey === matchedKey) {
         core.info(`Cache hit occurred for key: ${primaryKey}, not saving cache.`);
