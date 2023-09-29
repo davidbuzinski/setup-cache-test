@@ -1,0 +1,32 @@
+# Copyright 2020-2022 The MathWorks, Inc.
+
+name: Setup MATLAB
+description: >-
+  Set up MATLAB on a Linux-based GitHub-hosted runner
+inputs:
+  release:
+    description: >-
+      MATLAB release to set up (R2020a or later)
+    required: false
+    default: latest
+  products:
+    description: >-
+      Array of products to install
+    required: false
+    default: |
+      MATLAB
+      Parallel_Computing_Toolbox
+  use-cache:
+    description: >-
+      Big blah
+    required: false
+    default: false
+outputs:
+  matlabroot:
+    description: >-
+      A full path to the folder where MATLAB is installed.
+runs:
+  using: node16
+  main: dist/setup/index.js
+  post: dist/cache-save/index.js
+  post-if: success()
