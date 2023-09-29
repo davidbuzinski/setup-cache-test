@@ -23,7 +23,8 @@ describe("cache-restore", () => {
         update: "latest"
     };
     const products = ["MATLAB", "Parallel_Computing_Toolbox"];
-
+    const location = "/path/to/matlab";
+    
     beforeEach(() => {
         restoreCacheMock = cache.restoreCache as jest.Mock;
         infoMock = core.info as jest.Mock;
@@ -31,19 +32,19 @@ describe("cache-restore", () => {
     });
     
     it("ideally works", async () => {
-        await expect(restoreMATLAB(release, platform, products)).resolves.toBeUndefined();
+        await expect(restoreMATLAB(release, platform, products, location)).resolves.toBeUndefined();
         expect(restoreCacheMock).toHaveBeenCalledTimes(1);
         expect(infoMock).toHaveBeenCalledTimes(1);
     });
 
     it("does not save cache matched key if no cache is matched", async () => {
-        await expect(restoreMATLAB(release, platform, products)).resolves.toBeUndefined();
+        await expect(restoreMATLAB(release, platform, products, location)).resolves.toBeUndefined();
         expect(saveStateMock).toHaveBeenCalledTimes(2);
     });
 
     it("saves cache matched key if cache is matched", async () => {
         restoreCacheMock.mockReturnValue("matched-cache-key");
-        await expect(restoreMATLAB(release, platform, products)).resolves.toBeUndefined();
+        await expect(restoreMATLAB(release, platform, products, location)).resolves.toBeUndefined();
         expect(saveStateMock).toHaveBeenCalledTimes(3);
     });
 })
