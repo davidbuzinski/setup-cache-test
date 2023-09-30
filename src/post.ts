@@ -5,7 +5,7 @@ import { cacheMATLAB } from "./cache-save";
 
 export async function run() {
     const cache = core.getBooleanInput('cache');
-    if (!cache) {
+    if (cache) {
         await cacheMATLAB();
     }
 }
