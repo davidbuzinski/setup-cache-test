@@ -62,7 +62,7 @@ jobs:
         with:
           release: ${{ matrix.release }}
           products: ${{ matrix.products }}
-          use-cache: true
+          cache: true
       - name: Check matlabroot output is set
         run:  'if [[ "${{ steps.setup_matlab.outputs.matlabroot }}" != *"MATLAB"* ]]; then exit 1; fi'
         shell: bash
